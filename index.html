@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Planning from Point Clouds</title>
+
+    <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
+
+    <link rel="stylesheet" href="./static/css/bulma.min.css">
+    <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+    <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+    <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+    <link rel="stylesheet" href="./static/css/academicons.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+    <link rel="stylesheet" href="./static/css/index.css">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script defer src="./static/js/fontawesome.all.min.js"></script>
+    <script src="./static/js/bulma-carousel.min.js"></script>
+    <script src="./static/js/bulma-slider.min.js"></script>
+    <script src="./static/js/index.js"></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
+</head>
+
+<body>
+
+
+    <section class="hero">
+        <div class="hero-body">
+            <div class="container is-max-desktop">
+                <div class="columns is-centered">
+                    <div class="column has-text-centered">
+
+
+                        <h1 class="title is-1 publication-title">
+                            Planning from Point Clouds over Continuous Actions for Multi-object Rearrangement
+                        </h1>
+                        <h3 class="title is-4 conference-authors"><a target="_blank" href="https://roboticsconference.org/">Under Review</a>
+                        </h3>
+
+                    <div class="is-size-5 publication-authors">
+                        <span class="author-block">
+                            <a target="_blank" href="" style="font-size: 115%;">
+                                Anonymous Authors</a>
+
+                        </span>
+                    </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="container is-max-desktop">
+            <!-- Abstract. -->
+            <div class="columns is-centered has-text-centered">
+                <div class="column">
+                    <h2 class="title is-3">Abstract</h2>
+                    <div class="content has-text-justified">
+                        <p style="font-size: 125%">
+                            Multi-object rearrangement is a challenging task that requires robots to1
+reason about a physical 3D scene and the effects of a sequence of actions. While2
+traditional task planning methods are shown to be effective for long-horizon ma-3
+nipulation, they require discretizing the continuous state and action space into4
+symbolic descriptions of objects, object relationships, and actions. Our proposed5
+method is instead able to take in a partially-observed point cloud observation of6
+an initial scene and plan to a goal-satisfying configuration, without needing to7
+discretize the set of actions or object relationships. We formulate the planning8
+problem as an A* search over the space of possible point cloud rearrangements.9
+We sample point cloud transformations from a learned, domain-specific prior and10
+then search for a sequence of such transformations that leads from the initial state11
+to a goal. We evaluate our method in terms of task planning success and task12
+execution success in both simulation and real-world environments. We experi-13
+mentally demonstrate that our method produces successful plans and outperforms14
+a policy-learning approach; we also perform ablation experiments that show the15
+importance of search in our approach.
+<br>
+<br>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" style="padding: 0">
+        <div class="container is-max-desktop">
+            <!-- Abstract. -->
+            <div class="columns is-centered has-text-centered">
+                <video poster="" id="" autoplay controls loop width="100%" playbackRate=2.0 style="border-radius: 5px;">
+                    <source src="assets/Untitled video - Made with Clipchamp (5).mp4" type="video/mp4">
+                </video>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="container is-max-widescreen">
+            <div class="rows">
+                <div class="rows is-centered">
+                    <div class="row is-full-width">
+                        <h2 class="title is-3"><span class="dvima"> Data Collection</span></h2>
+                        <!-- <img src="assets/pipeline.m4v" class="interpolation-image" alt=""
+                            style="display: block; margin-left: auto; margin-right: auto; max-width: 80%;" /> -->
+                            <video autoplay controls muted loop playsinline height="100%">
+                              <source src="assets/Untitled video - Made with Clipchamp (11).mp4"
+                                      type="video/mp4">
+                            </video>
+                        <br>
+                        </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="container is-max-widescreen">
+            <div class="rows">
+                <div class="rows is-centered">
+                    <div class="row is-full-width">
+                        <h2 class="title is-3"><span class="dvima"> Simulation Results</span></h2>
+                        <!-- <img src="assets/pipeline.m4v" class="interpolation-image" alt=""
+                            style="display: block; margin-left: auto; margin-right: auto; max-width: 80%;" /> -->
+                            <video autoplay controls muted loop playsinline height="100%">
+                              <source src="assets/Untitled video - Made with Clipchamp (7).mp4"
+                                      type="video/mp4">
+                            </video>
+                        <br>
+                        </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="container is-max-widescreen">
+            <div class="rows">
+                <div class="rows is-centered">
+                    <div class="row is-full-width">
+                        <h2 class="title is-3"><span class="dvima"> Generalization to unseen Configurations</span></h2>
+                        <!-- <img src="assets/pipeline.m4v" class="interpolation-image" alt=""
+                            style="display: block; margin-left: auto; margin-right: auto; max-width: 80%;" /> -->
+                            <video autoplay controls muted loop playsinline height="100%">
+                              <source src="assets/Untitled video - Made with Clipchamp (10).mp4"
+                                      type="video/mp4">
+                            </video>
+                        <br>
+                        </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+<script>
+
+  timeoutIds = [];
+
+  function typeWriter(txt, i, q, num, text1, text2) {
+      var imgText = document.getElementById(text1 + num);
+      var answer = document.getElementById(text2 + num);
+      if (imgText.innerHTML == q) {
+          for (let k = 0; k < 5; k++) {
+              if (i < txt.length) {
+                  if (txt.charAt(i) == "\\") {
+                      answer.innerHTML += "\n";
+                      i += 1;
+                  } else {
+                      answer.innerHTML += txt.charAt(i);
+                  }
+                  i++;
+              }
+          }
+          hljs.highlightAll();
+          timeoutIds.push(setTimeout(typeWriter, 1, txt, i, q, num, text1, text2));
+      }
+  }
+
+</script>
+
+</html>
