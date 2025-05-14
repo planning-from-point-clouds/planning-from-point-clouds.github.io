@@ -74,6 +74,7 @@
         </div>
     </section>
 
+    <!-- Teaser Figure -->
     <section class="section" style="padding: 0">
         <div class="container is-max-desktop">
             <!-- Abstract. -->
@@ -85,12 +86,15 @@
         </div>
     </section>
 
+    <!-- System Overview -->
     <section class="section">
         <div class="container is-max-widescreen">
             <div class="rows">
                 <div class="rows is-centered">
                     <div class="row is-full-width">
                         <h2 class="title is-3"><span class="dvima"> System Overview</span></h2>
+                        <p style="font-size: 125%">Our method takes as input an RGB-D image of the scene, the names of the objects, and a goal function. From this input, it obtains a segmented point cloud, from which A* search begins planning over continuous point cloud space to reach a goal-satisfying configuration. At each step, A* explores possible actions, each consisting of (1) an object to move and (2) a placement for that object. The learned object suggester guides object selection, the predicted object placement is sampled from a learned placement suggester, and the learned model deviation estimator guides search towards actions that are more physically plausible. The method outputs a plan consisting of objects and their transformations, which the robot can execute without additional ground-truth information. </p>
+                        <br>
                         <img src="assets/Method.jpg" class="interpolation-image" alt="System Overview"
                             style="display: block; margin-left: auto; margin-right: auto; max-width: 80%;" />
                         <br>
@@ -106,7 +110,11 @@
                 <div class="rows is-centered">
                     <div class="row is-full-width">
                         <h2 class="title is-3"><span class="dvima"> Object and Placement Suggesters</span></h2>
-                        <img src="assets/Suggester.jpg" class="interpolation-image" alt="System Overview"
+                        <p style="font-size: 125%">Learned object and placement suggesters. (a) The object suggester operates on a point cloud observation of the scene. From its
+                            outputs, we derive a probability distribution that predicts which objects in the scene can feasibly be moved. (b) Given an object to move and the
+                            point cloud of the scene, the placement suggester can sample multiple transformations for that object of where it might be moved next. </p>
+                            <br>
+                            <img src="assets/Suggester.jpg" class="interpolation-image" alt="System Overview"
                             style="display: block; margin-left: auto; margin-right: auto; width: 50%;" />
                         <br>
                     </div>
@@ -121,8 +129,14 @@
                 <div class="rows is-centered">
                     <div class="row is-full-width">
                         <h2 class="title is-3"><span class="dvima"> Data Collection</span></h2>
-                        <!-- <img src="assets/pipeline.m4v" class="interpolation-image" alt=""
-                            style="display: block; margin-left: auto; margin-right: auto; max-width: 80%;" /> -->
+                        <p style="font-size: 125%">We train our learned placement suggester over demonstrations of each task. 
+                            The demonstrations are given in the form of a sequence of RGB-D images recorded from a camera, 
+                            together with the semantic names of the objects in the scene. 
+                            The initial observation is converted into a segmented point cloud using the extrinsic camera values and <a href="https://github.com/IDEA-Research/Grounded-SAM-2" target="_blank">Grounded Segment Anything</a>. 
+                            With a single camera, we can only get partial observations of the scene, which can lead to occlusions. 
+                            To avoid this issue, we collect all the subsequent data by transforming each object’s initial point cloud by the 
+                            transformation applied at that time step in the demonstration. To track where the objects are moving, we use <a href="https://cotracker3.github.io/" target="_blank">CoTracker3</a>. </p>
+                            <br>
                             <video autoplay controls muted loop playsinline height="100%">
                               <source src="assets/Untitled video - Made with Clipchamp (11).mp4"
                                       type="video/mp4">
@@ -139,9 +153,52 @@
             <div class="rows">
                 <div class="rows is-centered">
                     <div class="row is-full-width">
-                        <h2 class="title is-3"><span class="dvima"> Simulation Results</span></h2>
+                        <h2 class="title is-3"><span class="dvima"> Comparison to Points2Plans </span></h2>
+                        <p style="font-size: 125%">
+                            
+                            Similar to our approach, prior work such as <a href="https://sites.google.com/stanford.edu/points2plans" target="_blank">Points2Plans</a>
+                            plan to solve long-horizon manipulation tasks from partially-observed point clouds.
+
+                            In contrast to our method, Points2Plans and its baselines make use of relational state abstractions to convert the point cloud observations to a symbolic representation of the scene for planning.
+                            We compare against these approaches by running our method in their constrained packing environment, 
+                            where the robot must place items into a spatially constrained environment (a cupboard) by carefully reasoning about the objects’ planned placement positions. 
+                            <!-- Please refer to <a href="https://sites.google.com/stanford.edu/points2plans" target="_blank">Points2Plans</a> for more details on the task. -->
+                            
+                            Our method slightly outperforms Points2Plans on the constrained packing task, 
+                            achieving 100% task planning success and 84% task execution success on an evaluation set consisting of 5 different initial configurations run 
+                            with 100 different random seeds each.
+                        </p>
+                        <br>
                         <!-- <img src="assets/pipeline.m4v" class="interpolation-image" alt=""
                             style="display: block; margin-left: auto; margin-right: auto; max-width: 80%;" /> -->
+                            <img src="assets/Points2Plans_figure.png" class="interpolation-image" alt="System Overview"
+                            style="display: block; margin-left: auto; margin-right: auto; width: 50%;" />
+                            <video autoplay controls muted loop playsinline height="100%">
+                              <source src="assets/Points2Plans_video2.mp4"
+                                      type="video/mp4">
+                            </video>
+                        <br>
+                        </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <section class="section">
+        <div class="container is-max-widescreen">
+            <div class="rows">
+                <div class="rows is-centered">
+                    <div class="row is-full-width">
+                        <h2 class="title is-3"><span class="dvima"> Simulation Results</span></h2>
+                        <p style="font-size: 125%">We compare the execution performance of our method to <a href="https://3d-diffusion-policy.github.io/" target="_blank">3D Diffusion Policy</a>, an end-to-end imitation learning policy. 
+                            Our DP3 baseline is trained on a dataset of 23 task-specific demonstrations of a simulation block stacking task provided by a human expert. 
+                            All of the demonstrations lead to a single consistent goal configuration since DP3 is not goal-conditioned. 
+                            We evaluate on five tasks of varying complexity, where task complexity is defined by the number of steps in an optimal plan to reach a goal state. 
+                            As shown below, although DP3 achieves some success on 2-step tasks, it is unable to complete any 3 or 4-step tasks. See Table 2 in our paper for success rates.</p>
+                        <!-- <img src="assets/pipeline.m4v" class="interpolation-image" alt=""
+                            style="display: block; margin-left: auto; margin-right: auto; max-width: 80%;" /> -->
+                            <br>
                             <video autoplay controls muted loop playsinline height="100%">
                               <source src="assets/Untitled video - Made with Clipchamp (7).mp4"
                                       type="video/mp4">
@@ -159,6 +216,9 @@
                 <div class="rows is-centered">
                     <div class="row is-full-width">
                         <h2 class="title is-3"><span class="dvima"> Qualitative Analysis: Finding Efficient Path Lengths</span></h2>
+                        <p style="font-size: 125%">Our method can often complete the task more efficiently than the human demonstrations, 
+                            since our learned object and placement suggesters capture a goal-agnostic distribution of relevant objects and placements.
+                            By sampling from this distribution, our approach explores different possible solutions, allowing it to find shorter and more effective paths to the goal, compared to the human demonstration. </p>
                         <!-- <img src="assets/pipeline.m4v" class="interpolation-image" alt=""
                             style="display: block; margin-left: auto; margin-right: auto; max-width: 80%;" /> -->
                             <video autoplay controls muted loop playsinline height="100%">
@@ -178,6 +238,10 @@
                 <div class="rows is-centered">
                     <div class="row is-full-width">
                         <h2 class="title is-3"><span class="dvima"> Generalization to unseen Configurations</span></h2>
+                        <p style="font-size: 125%">Our method generalizes to previously unseen configurations and successfully finds optimal paths for them as well. This demonstrates that
+                            the object and placement suggesters have learned a generalizable distribution that is leveraged by search to find optimal paths.
+                        </p>
+                        <br>
                         <!-- <img src="assets/pipeline.m4v" class="interpolation-image" alt=""
                             style="display: block; margin-left: auto; margin-right: auto; max-width: 80%;" /> -->
                             <video autoplay controls muted loop playsinline height="100%">
@@ -190,6 +254,7 @@
             </div>
         </div>
     </section>
+
 
 <script>
 
