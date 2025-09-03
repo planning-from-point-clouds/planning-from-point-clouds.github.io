@@ -160,38 +160,9 @@
         </div>
     </section>
 
-    <!-- System Overview -->
-    <section class="section">
-        <div class="container is-max-widescreen">
-            <div class="rows">
-                <div class="rows is-centered">
-                    <div class="row is-full-width">
-                        <h2 class="title is-3"><span class="dvima"> SPOT: Search over Point Cloud Object Transformations</span></h2>
-                        <p style="font-size: 125%">
-                            SPOT solves multi-object rearrangement tasks by planning directly in point cloud space, without relying on privileged information such as ground-truth object states. 
-                            It performs A* search over object-wise SE(3) transformations, expanding nodes by sampling actions from learned suggesters that serve as domain-specific priors.
-                        </p>
-                                                 <br>
-                         <div style="display: flex; justify-content: center; gap: 20px; align-items: center;">
-                             <video autoplay controls muted loop playsinline height="100%" style="max-width: 65%;">
-                                 <source src="assets/1p2b1c_plan_and_exec.mp4"
-                                         type="video/mp4">
-                               </video>
-                               <video autoplay controls muted loop playsinline height="100%" style="max-width: 65%;">
-                                 <source src="assets/2p1b1c_plan_and_exec.mp4"
-                                         type="video/mp4">
-                               </video>
-                         </div>
-                         <br>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <!-- interactive examples of long horizon tasks -->
     <section class="section" style="padding-top: 1rem;">
-        <div class="container is-fluid">
+        <div class="container" style="max-width: 75%; margin: 0 auto;">
             <div class="rows">
                 <div class="rows is-centered">
                     <div class="row is-full-width">
@@ -252,6 +223,55 @@
             <div class="rows">
                 <div class="rows is-centered">
                     <div class="row is-full-width">
+                        <h2 class="title is-3"><span class="dvima"> SPOT: Search over Point Cloud Object Transformations</span></h2>
+                        <p style="font-size: 125%">
+                            SPOT solves multi-object rearrangement tasks by planning directly in point cloud space, without relying on privileged information such as ground-truth object states. 
+                            It performs A* search over object-wise SE(3) transformations, expanding nodes by sampling actions from learned suggesters that serve as domain-specific priors.
+                        </p>
+                                                 <br>
+                         <div style="display: flex; justify-content: center; gap: 20px; align-items: center;">
+                             <video autoplay controls muted loop playsinline height="100%" style="max-width: 50%;">
+                                 <source src="assets/1p2b1c_plan_and_exec.mp4"
+                                         type="video/mp4">
+                               </video>
+                               <video autoplay controls muted loop playsinline height="100%" style="max-width: 50%;">
+                                 <source src="assets/2p1b1c_plan_and_exec.mp4"
+                                         type="video/mp4">
+                               </video>
+                         </div>
+                         <br>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" style="padding-top: 4px;">
+        <div class="container is-max-widescreen">
+            <div class="rows">
+                <div class="rows is-centered">
+                    <div class="row is-full-width">
+                        <h3 class="title is-4"><span class="dvima">Plan Graph Visualization</span></h3>
+                        <p style="font-size: 125%">
+                            Shown below is a visualization of the plan graph for a table bussing task. Each node is a point cloud with cost and heuristic values, expanded using 
+                           SE(3) transformations from the learned suggesters. A* finds multimodal solutions: one plan moves the cup aside, stacks the bowls, then returns the cup (3 steps), while another places the cup next to the plate, enabling direct stacking (2 steps). High-collision plans are pruned.
+                        </p>
+                        <br>
+                        <img src="assets/plan_graph.png" class="interpolation-image" alt="Plan Graph"
+                            style="display: block; margin-left: auto; margin-right: auto; width: 100%;" />
+                        <br>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- System Overview -->
+    <section class="section">
+        <div class="container is-max-widescreen">
+            <div class="rows">
+                <div class="rows is-centered">
+                    <div class="row is-full-width">
                         <h2 class="title is-3"><span class="dvima"> Method Breakdown: </span></h2>
                         <h3 class="title is-4"><span class="dvima">1. Learned Suggesters</span></h3>
                         <p style="font-size: 125%">
@@ -276,7 +296,7 @@
 
                             <br><br><br>
 
-                            <h3 class="title is-4"><span class="dvima">2. A* Search</span></h3>
+                            <h3 class="title is-4"><span class="dvima">2. Guided A* Search</span></h3>
                             <p style="font-size: 125%">
                                 Our method takes as input an RGB-D image, object names, and a goal function. From a segmented point cloud, A* search plans over the space of 
                                 SE(3) transformations applied to object point clouds until a goal-satisfying configuration is reached. Node expansion samples actions in the form of (1) an object to move and (2) its placement, from the learned suggesters. 
@@ -367,7 +387,7 @@
                             style="display: block; margin-left: auto; margin-right: auto; max-width: 80%;" /> -->
                             <br>
                             <div style="display: flex; justify-content: center;">
-                                <video autoplay controls muted loop playsinline height="100%" style="width: 130%; max-width: 1300px;">
+                                <video autoplay controls muted loop playsinline height="100%" style="width: 110%; max-width: 1100px;">
                                   <source src="assets/long_horizon.mp4"
                                           type="video/mp4">
                                 </video>
@@ -391,7 +411,7 @@
                         <!-- <img src="assets/pipeline.m4v" class="interpolation-image" alt=""
                             style="display: block; margin-left: auto; margin-right: auto; max-width: 80%;" /> -->
                             <div style="display: flex; justify-content: center;">
-                                <video autoplay controls muted loop playsinline height="100%" style="width: 130%; max-width: 1300px;">
+                                <video autoplay controls muted loop playsinline height="100%" style="width: 110%; max-width: 1100px;">
                                   <source src="assets/efficient_planning.mp4"
                                           type="video/mp4">
                                 </video>
@@ -411,10 +431,36 @@
                         <h2 class="title is-3"><span class="dvima">Acknowledgements</span></h2>
                         <p style="font-size: 125%">This material is based upon work supported by ONR MURI N00014-24-1-2748 and by the Toyota Research Institute. Any opinions, findings, 
                             and conclusions or recommendations expressed in this material are those of the author(s) and do not necessarily reflect the views of the Office of Naval Research 
-                            or Toyota Research Institute.
+                            or Toyota Research Institute. We also thank the members of the R-PAD Lab and SBPL for helpful discussions and constructive feedback on this project.
                         </p>
                         <br>
                         </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="container is-max-widescreen">
+            <div class="rows">
+                <div class="rows is-centered">
+                    <div class="row is-full-width">
+                        <div style="display: flex; justify-content: center;">
+                            <a href="https://r-pad.github.io/">
+                                <img src="logos/rpad.png" style="width: auto; height: 100px; margin-right: 50px;">
+                            </a>
+                            <a href="http://www.sbpl.net/Home">
+                                <img src="logos/sbpl.png" style="width: auto; height: 100px; margin-right: 50px;">
+                            </a>
+                            <a href="https://www.onr.navy.mil/">
+                                <img src="logos/onr.png" style="width: auto; height: 100px; margin-right: 50px;">
+                            </a>
+                            <a href="https://www.tri.global/">
+                                <img src="logos/tri.svg" style="width: auto; height: 60px; margin-top: 20px;">
+                            </a>
+                        </div>
+                        <br>
+                    </div>
                 </div>
             </div>
         </div>
